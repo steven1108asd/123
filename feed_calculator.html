@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>撒料計算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: auto;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h2>撒料計算器</h2>
+    <label for="weight">預計重量:</label>
+    <input type="number" id="weight" placeholder="請輸入預計重量">
+
+    <label for="feedRate1">撒料速度1:</label>
+    <input type="number" id="feedRate1" placeholder="請輸入撒料速度1">
+
+    <label for="feedRate2">撒料速度2:</label>
+    <input type="number" id="feedRate2" placeholder="請輸入撒料速度2">
+
+    <label for="feedRate3">撒料速度3:</label>
+    <input type="number" id="feedRate3" placeholder="請輸入撒料速度3">
+
+    <label for="lineSpeed">線速度:</label>
+    <input type="number" id="lineSpeed" placeholder="請輸入線速度">
+
+    <button onclick="calculate()">計算</button>
+
+    <div id="result">計算結果: </div>
+
+    <script>
+        function calculate() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const feedRate1 = parseFloat(document.getElementById('feedRate1').value);
+            const feedRate2 = parseFloat(document.getElementById('feedRate2').value);
+            const feedRate3 = parseFloat(document.getElementById('feedRate3').value);
+            const lineSpeed = parseFloat(document.getElementById('lineSpeed').value);
+            
+            if (isNaN(weight) || isNaN(feedRate1) || isNaN(feedRate2) || isNaN(feedRate3) || isNaN(lineSpeed)) {
+                document.getElementById('result').innerText = "請輸入有效的數字";
+                return;
+            }
+
+            const totalFeedRate = feedRate1 + feedRate2 + feedRate3;
+            const result = weight / totalFeedRate / lineSpeed;
+
+            document.getElementById('result').innerText = `計算結果: ${result.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
